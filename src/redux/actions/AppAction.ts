@@ -1,8 +1,6 @@
-import { ThunkAction } from 'redux-thunk';
 import ChatRoom from 'src/model/ChatRoom';
 import ChatUser from 'src/model/ChatUser';
 import SocketMessage from 'src/Proto/SocketMessage';
-import RoomJoinData from '../../model/RoomJoinData';
 import { ThunkResult } from '../store';
 
 interface RoomJoinRequest {
@@ -27,15 +25,22 @@ interface RoomJoinDeclined {
     }
 }
 
+interface setUser {
+    type: 'SET_USER'
+    payload: {
+        name: string,
+        roomId: string,
+    }
+}
 
-type LoginActionTypes = RoomJoinRequest | RoomJoinGranted | RoomJoinDeclined;
+type AppActionTypes = RoomJoinRequest | RoomJoinGranted | RoomJoinDeclined | setUser;
 
-export default LoginActionTypes;
+export default AppActionTypes;
 
 
 const connectionInitAction = (): ThunkResult<void> => {
     return (dispatch, getState) => {
-        getState().login.MyWS.addEventListener('message', (message) => {
+        getState().app.MyWS.addEventListener('message', (message) => {
             const msg: SocketMessage = JSON.parse(message.data);
             switch (msg.type) {
                 case 'SYS':
@@ -54,7 +59,17 @@ const connectionInitAction = (): ThunkResult<void> => {
                 default:
                     break;
             }
-        })
+        });
+    }
+}
+
+const setUser = (name: string, roomId: string): AppActionTypes => {
+    return {
+        type: 'SET_USER',
+        payload: {
+            name: name,
+            roomId: roomId,
+        }
     }
 }
 
@@ -72,7 +87,7 @@ const loginAction = (id: string, users: ChatUser[]): RoomJoinGranted => {
 
 const roomJoin = (userName: string, roomId: string): ThunkResult<void> => {
     return (dispatch, getState) => {
-        getState().login.MyWS.send(JSON.stringify({
+        getState().app.MyWS.send(JSON.stringify({
             type: 'SYS',
             payload: {
                 type: 'ROOM_JOIN',
@@ -82,7 +97,7 @@ const roomJoin = (userName: string, roomId: string): ThunkResult<void> => {
                 }
             }
         }));
-        dispatch();
+        dispatch(setUser(userName, roomId));
     }
 }
 

@@ -1,12 +1,10 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import thunk, { ThunkAction, ThunkMiddleware } from "redux-thunk";
-import chatReducer from "./reducers/chatReducer";
-import loginReducer from "./reducers/LoginReducer";
+import AppReducer from "./reducers/AppReducer";
 
 
 const reducer = combineReducers({
-    login: loginReducer,
-    chat: chatReducer
+    app: AppReducer
 });
 
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ as typeof compose || compose;
