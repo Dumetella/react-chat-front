@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Chat from './Chat';
 import LoginForm from './LoginForm';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { connectionInitAction, roomJoin } from '../redux/actions/AppAction';
+import { connectionInitAction, roomJoin, sendMessage } from '../redux/actions/AppAction';
 
 function App() {
 
@@ -23,7 +23,7 @@ function App() {
       {!joined ? (
         <LoginForm onLogin={onLogin} />
       ) : (
-        <Chat {...chat} onAddMessage={(m) => console.log(m)} />
+        <Chat {...chat} onAddMessage={(m) => dispatch(sendMessage(m))} />
       )}
     </div>
   );

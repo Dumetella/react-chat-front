@@ -1,6 +1,7 @@
 import ChatRoom from 'src/model/ChatRoom';
 import ChatUser from 'src/model/ChatUser';
-import SocketMessage from 'src/Proto/SocketMessage';
+import { Message } from 'src/Proto/Model/Message';
+import SocketMessage from '../../Proto/SocketMessage';
 import { ThunkResult } from '../store';
 
 interface RoomJoinRequest {
@@ -25,50 +26,89 @@ interface RoomJoinDeclined {
     }
 }
 
-interface setUser {
-    type: 'SET_USER'
+interface setUsers {
+    type: 'SET_USERS'
     payload: {
-        name: string,
-        roomId: string,
+        users: ChatUser[];
     }
 }
 
-type AppActionTypes = RoomJoinRequest | RoomJoinGranted | RoomJoinDeclined | setUser;
+interface messageRecieved {
+    type: 'MESSAGE_RECV'
+    payload: {
+        message: Message;
+    }
+}
+
+interface socketInited {
+    type: 'SOCKET_INIT'
+    payload: {
+        socket: WebSocket;
+    }
+}
+
+type AppActionTypes = RoomJoinRequest | RoomJoinGranted | RoomJoinDeclined | setUsers | messageRecieved | socketInited;
 
 export default AppActionTypes;
 
 
 const connectionInitAction = (): ThunkResult<void> => {
     return (dispatch, getState) => {
-        getState().app.MyWS.addEventListener('message', (message) => {
+        const ws = new WebSocket('ws://localhost:32280/');
+        ws.addEventListener('message', (message) => {
             const msg: SocketMessage = JSON.parse(message.data);
             switch (msg.type) {
-                case 'SYS':
+                case 'CHAT':
                     switch (msg.payload.type) {
                         case 'ROOM_GRANTED':
-                            dispatch(loginAction(msg.payload.payload.room.id, msg.payload.payload.room.users))
+                            dispatch(loginAction(msg.payload.payload.room.id, msg.payload.payload.room.users));
+                            dispatch(setUsers(msg.payload.payload.room.users));
                             break;
 
+                        case 'USER_JOINED':
+                            dispatch(setUsers([...getState().app.users, msg.payload.payload.user]))
+                            break;
+
+                        case 'USER_DISCONECTED':
+                            //?????
+                            const aboba = msg.payload.payload.user.id;
+                            dispatch(setUsers(getState().app.users.filter(c => c.id !== aboba)));
+                            break;
+
+                        case 'MESSAGE_RECIEVED':
+                            dispatch({
+                                type: 'MESSAGE_RECV',
+                                payload: {
+                                    message: msg.payload.payload.message
+                                }
+                            })
+                            break;
                         default:
                             break;
                     }
                     break;
 
-                case 'CHAT':
+                case 'SYS':
 
                 default:
                     break;
             }
+
         });
-    }
+        dispatch({
+            type: 'SOCKET_INIT',
+            payload: {
+                socket: ws
+            }
+        });
+    };
 }
 
-const setUser = (name: string, roomId: string): AppActionTypes => {
+const setUsers = (users: ChatUser[]): AppActionTypes => {
     return {
-        type: 'SET_USER',
+        type: 'SET_USERS',
         payload: {
-            name: name,
-            roomId: roomId,
+            users
         }
     }
 }
@@ -87,8 +127,8 @@ const loginAction = (id: string, users: ChatUser[]): RoomJoinGranted => {
 
 const roomJoin = (userName: string, roomId: string): ThunkResult<void> => {
     return (dispatch, getState) => {
-        getState().app.MyWS.send(JSON.stringify({
-            type: 'SYS',
+        getState().app.MyWS?.send(JSON.stringify({
+            type: 'CHAT',
             payload: {
                 type: 'ROOM_JOIN',
                 payload: {
@@ -97,10 +137,23 @@ const roomJoin = (userName: string, roomId: string): ThunkResult<void> => {
                 }
             }
         }));
-        dispatch(setUser(userName, roomId));
     }
 }
 
-export { loginAction, roomJoin, connectionInitAction }
+const sendMessage = (text: string): ThunkResult<void> => {
+    return (dispatch, getState) => {
+        getState().app.MyWS?.send(JSON.stringify({
+            type: 'CHAT',
+            payload: {
+                type: 'MESSAGE_SENT',
+                payload: {
+                    text
+                }
+            }
+        }));
+    }
+}
+
+export { loginAction, roomJoin, connectionInitAction, sendMessage }
 
 
