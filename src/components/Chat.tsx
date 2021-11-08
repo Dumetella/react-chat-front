@@ -1,6 +1,7 @@
 import React from 'react';
 import { ChatMessage } from 'src/model/ChatMessage';
 import ChatUser from 'src/model/ChatUser';
+import { convertUnixTimeToDate } from '../service/TimeCoverter';
 
 interface ChatProps {
   users: ChatUser[],
@@ -47,7 +48,8 @@ function Chat(props: ChatProps) {
               <div key={index} className="message">
                 <p>{message.text}</p>
                 <div>
-                  <span>{userName}</span>
+                  <span>{message.sender.name}</span> <br />
+                  <span>{new Date(message.date).toTimeString()}</span>
                 </div>
               </div>
             ))}
