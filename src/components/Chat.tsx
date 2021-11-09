@@ -1,7 +1,7 @@
 import React from 'react';
 import { ChatMessage } from 'src/model/ChatMessage';
 import ChatUser from 'src/model/ChatUser';
-import { convertUnixTimeToDate } from '../service/TimeCoverter';
+
 
 interface ChatProps {
   users: ChatUser[],

@@ -1,3 +1,5 @@
+import { Button, Container, TextField, Typography } from '@mui/material';
+import { Box, typography } from '@mui/system';
 import React from 'react';
 
 interface LoginProps {
@@ -21,23 +23,26 @@ function LoginForm(props: LoginProps) {
     };
 
     return (
-        <div className="login-form">
-            <input
-                type="text"
-                placeholder="Room ID"
-                value={roomId}
-                onChange={(e) => setRoomId(e.target.value)}
-            />
-            <input
-                type="text"
-                placeholder="Nickname"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
-            />
-            <button disabled={isLoading} onClick={onEnter} className="btn btn-success">
-                Login
-            </button>
-        </div>
+        <Container sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', width: '300px', paddingTop: '20%' }}>
+                <Typography variant="h2" marginBottom="20px">React Chat</Typography>
+                <TextField
+                    id="outlined-basic"
+                    label="Room ID"
+                    variant="outlined"
+                    value={roomId}
+                    onChange={(e) => setRoomId(e.target.value)}
+                />
+                <TextField
+                    id="outlined-basic"
+                    label="Nickname"
+                    variant="outlined"
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
+                />
+                <Button variant="contained" disabled={isLoading} onClick={onEnter}>Join</Button>
+            </Box>
+        </Container>
     );
 }
 

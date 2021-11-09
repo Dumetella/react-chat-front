@@ -3,6 +3,7 @@ import Chat from './Chat';
 import LoginForm from './LoginForm';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { connectionInitAction, roomJoin, sendMessage } from '../redux/actions/AppAction';
+import { Container } from "@mui/material"
 
 function App() {
 
@@ -19,13 +20,13 @@ function App() {
   }, [])
 
   return (
-    <div className="wrapper">
+    <>
       {!joined ? (
         <LoginForm onLogin={onLogin} />
       ) : (
         <Chat {...chat} onAddMessage={(m) => dispatch(sendMessage(m))} />
       )}
-    </div>
+    </>
   );
 }
 
