@@ -30,6 +30,7 @@ function LoginForm(props: LoginProps) {
                     id="outlined-basic"
                     label="Room ID"
                     variant="outlined"
+                    sx={{ marginBottom: "10px" }}
                     value={roomId}
                     onChange={(e) => setRoomId(e.target.value)}
                 />
@@ -38,9 +39,16 @@ function LoginForm(props: LoginProps) {
                     label="Nickname"
                     variant="outlined"
                     value={userName}
+                    sx={{ marginBottom: "10px" }}
                     onChange={(e) => setUserName(e.target.value)}
                 />
-                <Button variant="contained" disabled={isLoading} onClick={onEnter}>Join</Button>
+                <Button
+                    variant="contained"
+                    disabled={isLoading}
+                    onClick={onEnter}
+                    sx={{ minHeight: '3rem' }}
+                >Join
+                </Button>
             </Box>
         </Container>
     );

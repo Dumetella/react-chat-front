@@ -20,13 +20,20 @@ function App() {
   }, [])
 
   return (
-    <>
-      {!joined ? (
+    <Container
+      sx={{
+        margin: '100px auto',
+        maxWidth: '40%',
+        minWidth: '720px'
+      }}
+    >
+      {!true ? (
+        // {!joined ? (
         <LoginForm onLogin={onLogin} />
       ) : (
-        <Chat {...chat} onAddMessage={(m) => dispatch(sendMessage(m))} />
+        <Chat {...chat} messages={[{ date: new Date().toString(), sender: { id: '1', name: 'Abobus' }, text: 'Aboba is here' }, { date: new Date().toString(), sender: { id: '1', name: 'Abobus' }, text: 'Aboba is here' }, { date: new Date().toString(), sender: { id: '1', name: 'Abobus' }, text: 'Aboba is here' }]} users={[{ id: '1', name: 'Abobus' }, { id: '2', name: 'Abebus' }, { id: '3', name: 'Abebrus' }]} onAddMessage={(m) => dispatch(sendMessage(m))} />
       )}
-    </>
+    </Container>
   );
 }
 

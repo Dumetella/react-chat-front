@@ -1,3 +1,5 @@
+import { Button, Card, CardMedia, Container, Divider, ListItem, Paper, Stack, TextField, Typography } from '@mui/material';
+import { Box } from '@mui/system';
 import React from 'react';
 import { ChatMessage } from 'src/model/ChatMessage';
 import ChatUser from 'src/model/ChatUser';
@@ -30,42 +32,92 @@ function Chat(props: ChatProps) {
   }, [messages]);
 
   return (
-    <div className="chat">
-      <div className="chat-users">
-        Room: <b>{roomId}</b>
-        <hr />
-        <b>Currently online ({users.length}):</b>
-        <ul>
+    <Box
+      sx={{
+        display: 'flex',
+        height: '500px',
+        border: '1px solid rgba(159, 183, 197, 0.2)',
+        borderRadius: '8px',
+        overflow: 'hidden'
+      }}
+    >
+      <Box sx={{
+        borderRight: '1px solid rgba(159, 183, 197, 0.1)',
+        padding: '20px',
+        width: '200px',
+        backgroundColor: '#f6f9fa'
+      }}>
+        <Typography>Room:<b> {roomId}Aboba</b></Typography>
+        <Divider />
+        <Typography><b>Currently online ({users.length}):</b></Typography>
+        <Stack>
           {users.map((user, index) => (
-            <li key={index}>{user.name}</li>
+            <Typography key={index}>{user.name}</Typography>
           ))}
-        </ul>
-      </div>
-      <div className="chat-messages">
+        </Stack>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          flex: '1',
+          padding: '30px'
+        }}
+      >
         {messages ?
-          <div ref={messagesRef} className="messages">
+          <Box
+            ref={messagesRef}
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              flex: '1',
+              height: 'calc(100% - 155px)',
+              overflow: 'auto'
+            }}
+          >
             {messages.map((message, index) => (
-              <div key={index} className="message">
-                <p>{message.text}</p>
-                <div>
-                  <span>{message.sender.name}</span> <br />
-                  <span>{new Date(message.date).toTimeString()}</span>
-                </div>
-              </div>
+              <Card
+                variant="outlined"
+                key={index}
+                sx={{
+                  marginBottom: '20px',
+                  display: 'inline-flex',
+                  borderRadius: '10px',
+                  borderTop: '1px solid rgba(0, 0, 0, 0.1)',
+                  backgroundColor: '#7160ff',
+                  padding: '10px 15px 15px',
+                  color: '#fff',
+                }}
+              >
+                <Typography>{message.text}</Typography>
+                <Typography>{message.sender.name}</Typography>
+                <Typography>{new Date(message.date).toTimeString()}</Typography>
+              </Card>
             ))}
-          </div> : null}
-        <form>
-          <textarea
+          </Box> : null}
+        <Box component="form"
+          sx={{
+            marginTop: '20px',
+            paddingTop: '20px',
+            borderTop: '1px solid rgba(0, 0, 0, 0.1)'
+          }}
+        >
+          <TextField
             value={messageValue}
             onChange={(e) => setMessageValue(e.target.value)}
-            className="form-control"
-            rows={3}></textarea>
-          <button onClick={onSendMessage} type="button" className="btn btn-primary">
+            multiline
+            rows={3}
+            sx={{
+              width: '100%',
+            }}
+          />
+          <Button onClick={onSendMessage}>
             Send
-          </button>
-        </form>
-      </div>
-    </div>
+          </Button>
+        </Box>
+      </Box>
+    </Box>
   );
 }
 
