@@ -20,3 +20,5 @@ class AppState {
 }
 
 export default AppState
+
+//new Array(10).fill({ date: new Date().toString(), sender: { id: '1', name: 'Abobus' }, text: 'text' })

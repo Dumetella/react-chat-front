@@ -3,6 +3,7 @@ import { Box } from '@mui/system';
 import React from 'react';
 import { ChatMessage } from 'src/model/ChatMessage';
 import ChatUser from 'src/model/ChatUser';
+import Message from './Message';
 
 
 interface ChatProps {
@@ -35,10 +36,9 @@ function Chat(props: ChatProps) {
     <Box
       sx={{
         display: 'flex',
-        height: '500px',
+        height: '720px',
         border: '1px solid rgba(159, 183, 197, 0.2)',
         borderRadius: '8px',
-        overflow: 'hidden'
       }}
     >
       <Box sx={{
@@ -47,7 +47,7 @@ function Chat(props: ChatProps) {
         width: '200px',
         backgroundColor: '#f6f9fa'
       }}>
-        <Typography>Room:<b> {roomId}Aboba</b></Typography>
+        <Typography>Room:<b> {roomId}</b></Typography>
         <Divider />
         <Typography><b>Currently online ({users.length}):</b></Typography>
         <Stack>
@@ -60,8 +60,7 @@ function Chat(props: ChatProps) {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'space-between',
-          flex: '1',
+          flex: '1 1',
           padding: '30px'
         }}
       >
@@ -71,29 +70,12 @@ function Chat(props: ChatProps) {
             sx={{
               display: 'flex',
               flexDirection: 'column',
-              flex: '1',
-              height: 'calc(100% - 155px)',
+              height: '100%',
               overflow: 'auto'
             }}
           >
             {messages.map((message, index) => (
-              <Card
-                variant="outlined"
-                key={index}
-                sx={{
-                  marginBottom: '20px',
-                  display: 'inline-flex',
-                  borderRadius: '10px',
-                  borderTop: '1px solid rgba(0, 0, 0, 0.1)',
-                  backgroundColor: '#7160ff',
-                  padding: '10px 15px 15px',
-                  color: '#fff',
-                }}
-              >
-                <Typography>{message.text}</Typography>
-                <Typography>{message.sender.name}</Typography>
-                <Typography>{new Date(message.date).toTimeString()}</Typography>
-              </Card>
+              <Message key={index} {...message} />
             ))}
           </Box> : null}
         <Box component="form"
@@ -112,7 +94,12 @@ function Chat(props: ChatProps) {
               width: '100%',
             }}
           />
-          <Button onClick={onSendMessage}>
+          <Button
+            onClick={onSendMessage}
+            sx={{
+
+            }}
+          >
             Send
           </Button>
         </Box>
