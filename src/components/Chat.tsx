@@ -37,12 +37,12 @@ function Chat(props: ChatProps) {
       sx={{
         display: 'flex',
         height: '720px',
-        border: '1px solid rgba(159, 183, 197, 0.2)',
+        border: '2px solid rgba(159, 183, 197, 0.2)',
         borderRadius: '8px',
       }}
     >
       <Box sx={{
-        borderRight: '1px solid rgba(159, 183, 197, 0.1)',
+        borderRight: '2px solid rgba(159, 183, 197, 0.1)',
         padding: '20px',
         width: '200px',
         backgroundColor: '#f6f9fa'
@@ -60,22 +60,20 @@ function Chat(props: ChatProps) {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          flex: '1 1',
-          padding: '30px'
+          padding: '30px',
+          flex: '1'
         }}
       >
         {messages ?
           <Box
             ref={messagesRef}
             sx={{
-              display: 'flex',
-              flexDirection: 'column',
               height: '100%',
-              overflow: 'auto'
+              overflow: 'auto',
             }}
           >
             {messages.map((message, index) => (
-              <Message key={index} {...message} />
+              <Message key={index} message={message} />
             ))}
           </Box> : null}
         <Box component="form"
@@ -89,7 +87,7 @@ function Chat(props: ChatProps) {
             value={messageValue}
             onChange={(e) => setMessageValue(e.target.value)}
             multiline
-            rows={3}
+            rows={2}
             sx={{
               width: '100%',
             }}

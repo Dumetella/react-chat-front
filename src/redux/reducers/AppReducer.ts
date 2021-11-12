@@ -1,5 +1,6 @@
 import AppActionTypes from '../actions/AppAction';
 import AppState from '../state/AppState';
+import { ChatMessage } from '../../model/ChatMessage'
 
 function AppReducer(state = new AppState(), action: AppActionTypes): AppState {
     switch (action.type) {
@@ -24,7 +25,7 @@ function AppReducer(state = new AppState(), action: AppActionTypes): AppState {
         case 'MESSAGE_RECV':
             return {
                 ...state,
-                messages: [...state.messages, action.payload.message]
+                messages: [...state.messages, new ChatMessage(action.payload.message)]
             }
         default: return state
     }

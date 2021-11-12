@@ -3,37 +3,50 @@ import { Box } from '@mui/system'
 import React from 'react'
 import { ChatMessage } from 'src/model/ChatMessage'
 
-export default function Message(props: ChatMessage): JSX.Element {
+
+interface MessageProps {
+    message: ChatMessage;
+}
+
+export default function Message(props: MessageProps): JSX.Element {
     return (
-        <Card
-            variant="outlined"
+        <Box
             sx={{
-                marginBottom: '20px',
-                display: 'inline-flex',
-                borderTop: '1px solid rgba(0, 0, 0, 0.1)',
-                backgroundColor: '#7160ff',
-                color: '#fff',
-                flexDirection: 'column',
-                padding: '10px 15px 15px',
+                width: '100%'
             }}
         >
-            <Box
+            <Card
+                variant="outlined"
                 sx={{
-                    display: 'flex',
+                    marginBottom: '20px',
+                    display: 'inline-block',
+                    borderTop: '1px solid rgba(0, 0, 0, 0.1)',
+                    backgroundColor: '#7160ff',
+                    color: '#fff',
+                    padding: '10px 15px 15px',
+                    maxWidth: '720px',
+                    wordWrap: 'break-word',
+                    whiteSpace: 'break-spaces',
+                    width: 'auto'
                 }}
             >
-                <Typography
-                    sx={{ marginRight: '0.5rem' }}
+                <Box
+                    sx={{
+                        display: 'inline-flex',
+                    }}
                 >
-                    {props.sender.name}
+                    <Typography
+                        sx={{ marginRight: '0.5rem' }}
+                        variant="body2"
+                    >
+                        {props.message.sender.name}
+                    </Typography>
+                    <Typography variant="body2">{(props.message.shortDate)}</Typography>
+                </Box>
+                <Typography variant="body1">
+                    {props.message.text}
                 </Typography>
-                <Typography>{new Date(props.date).toTimeString()}</Typography>
-            </Box>
-            <Typography>
-                <pre style={{ fontFamily: 'inherit' }}>
-                    {props.text}
-                </pre>
-            </Typography>
-        </Card>
+            </Card>
+        </Box>
     )
 }
