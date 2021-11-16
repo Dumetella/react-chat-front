@@ -7,7 +7,7 @@ class AppState {
     userName: string;
     MyWS: WebSocket | undefined;
     users: ChatUser[];
-    messages: ChatMessage[];
+    messages: ChatMessage[] | [];
     constructor() {
         this.MyWS = undefined;
         this.joined = false;

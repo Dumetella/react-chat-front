@@ -3,6 +3,7 @@ import { Box } from '@mui/system';
 import React from 'react';
 import { ChatMessage } from 'src/model/ChatMessage';
 import ChatUser from 'src/model/ChatUser';
+import { ChatBox, InputBox, MainBox, MessageBox, UsersBox } from '../style/ChatStyles';
 import Message from './Message';
 
 
@@ -33,20 +34,8 @@ function Chat(props: ChatProps) {
   }, [messages]);
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        height: '720px',
-        border: '2px solid rgba(159, 183, 197, 0.2)',
-        borderRadius: '8px',
-      }}
-    >
-      <Box sx={{
-        borderRight: '2px solid rgba(159, 183, 197, 0.1)',
-        padding: '20px',
-        width: '200px',
-        backgroundColor: '#f6f9fa'
-      }}>
+    <MainBox>
+      <UsersBox>
         <Typography>Room:<b> {roomId}</b></Typography>
         <Divider />
         <Typography><b>Currently online ({users.length}):</b></Typography>
@@ -55,34 +44,15 @@ function Chat(props: ChatProps) {
             <Typography key={index}>{user.name}</Typography>
           ))}
         </Stack>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          padding: '30px',
-          flex: '1'
-        }}
-      >
+      </UsersBox>
+      <ChatBox>
         {messages ?
-          <Box
-            ref={messagesRef}
-            sx={{
-              height: '100%',
-              overflow: 'auto',
-            }}
-          >
+          <MessageBox ref={messagesRef}>
             {messages.map((message, index) => (
               <Message key={index} message={message} />
             ))}
-          </Box> : null}
-        <Box component="form"
-          sx={{
-            marginTop: '20px',
-            paddingTop: '20px',
-            borderTop: '1px solid rgba(0, 0, 0, 0.1)'
-          }}
-        >
+          </MessageBox> : null}
+        <InputBox component="form">
           <TextField
             value={messageValue}
             onChange={(e) => setMessageValue(e.target.value)}
@@ -100,9 +70,9 @@ function Chat(props: ChatProps) {
           >
             Send
           </Button>
-        </Box>
-      </Box>
-    </Box>
+        </InputBox>
+      </ChatBox>
+    </MainBox>
   );
 }
 
