@@ -33,23 +33,30 @@ function Chat(props: ChatProps) {
     messagesRef.current.scrollTo(0, 99999);
   }, [messages]);
 
-  const keyPress = (e: any) => {
-    if (e.keyCode == 13) {
-      onSendMessage();
+  const keyPress = (e: React.KeyboardEvent) => {
+
+    if (e.shiftKey === false) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        onSendMessage();
+      }
     }
+    return
   }
 
   return (
     <MainBox>
       <UsersBox>
-        <Typography>Room:<b> {roomId}</b></Typography>
-        <Divider />
-        <Typography><b>Currently online ({users.length}):</b></Typography>
-        <Stack>
-          {users.map((user, index) => (
-            <Typography key={index}>{user.name}</Typography>
-          ))}
-        </Stack>
+        <Box sx={{ margin: '20px 0px 20px 20px' }}>
+          <Typography>Room:<b> {roomId}</b></Typography>
+          <Divider />
+          <Typography><b>Currently online ({users.length}):</b></Typography>
+          <Stack>
+            {users.map((user, index) => (
+              <Typography key={index}>{user.name}</Typography>
+            ))}
+          </Stack>
+        </Box>
       </UsersBox>
       <ChatBox>
         {messages ?
@@ -63,19 +70,11 @@ function Chat(props: ChatProps) {
             value={messageValue}
             onChange={(e) => setMessageValue(e.target.value)}
             multiline
-            rows={2}
             fullWidth={true}
             onKeyDown={keyPress}
+            placeholder='Write a message'
+            disableUnderline
           />
-          {/* <Button
-            // type='submit'
-            onClick={onSendMessage}
-            sx={{
-              color: '#fff'
-            }}
-          >
-            Send
-          </Button> */}
         </InputBox>
       </ChatBox>
     </MainBox>
