@@ -3,7 +3,7 @@ import { Box } from '@mui/system';
 import React from 'react';
 import { ChatMessage } from 'src/model/ChatMessage';
 import ChatUser from 'src/model/ChatUser';
-import { ChatBox, InputBox, MainBox, MessageBox, UsersBox } from '../style/ChatStyles';
+import { ChatBox, InputBox, MainBox, MessageBox, TextField2, UsersBox } from '../style/ChatStyles';
 import Message from './Message';
 
 
@@ -33,6 +33,12 @@ function Chat(props: ChatProps) {
     messagesRef.current.scrollTo(0, 99999);
   }, [messages]);
 
+  const keyPress = (e: any) => {
+    if (e.keyCode == 13) {
+      onSendMessage();
+    }
+  }
+
   return (
     <MainBox>
       <UsersBox>
@@ -53,23 +59,23 @@ function Chat(props: ChatProps) {
             ))}
           </MessageBox> : null}
         <InputBox component="form">
-          <TextField
+          <TextField2
             value={messageValue}
             onChange={(e) => setMessageValue(e.target.value)}
             multiline
             rows={2}
-            sx={{
-              width: '100%',
-            }}
+            fullWidth={true}
+            onKeyDown={keyPress}
           />
-          <Button
+          {/* <Button
+            // type='submit'
             onClick={onSendMessage}
             sx={{
-
+              color: '#fff'
             }}
           >
             Send
-          </Button>
+          </Button> */}
         </InputBox>
       </ChatBox>
     </MainBox>

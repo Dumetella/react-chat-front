@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import store from './redux/store';
 import { ThemeProvider } from '@mui/system';
 import { theme } from './style/theme';
+import './style/index.scss'
 
 ReactDOM.render(
   <React.StrictMode>

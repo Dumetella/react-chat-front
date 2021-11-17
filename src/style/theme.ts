@@ -3,10 +3,10 @@ import { createTheme } from '@mui/material/styles';
 export const theme = createTheme({
     palette: {
         primary: {
-            light: '#757ce8',
-            main: '#3f50b5',
-            dark: '#002884',
-            contrastText: '#fff',
+            light: '#2B5278',
+            main: '#17212B',
+            dark: '#0E1621',
+            contrastText: '#66727D',
         },
         secondary: {
             light: '#ff7961',
@@ -16,3 +16,11 @@ export const theme = createTheme({
         },
     },
 });
+
+
+'#0E1621' //dark
+'#17212B' // background
+'#2B5278' // light
+'#4683B4' // цвет сообщения
+'#61AFEC' // цвет галочки
+'#66727D' //text addition
