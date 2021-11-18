@@ -47,7 +47,11 @@ interface socketInited {
     }
 }
 
-type AppActionTypes = RoomJoinRequest | RoomJoinGranted | RoomJoinDeclined | setUsers | messageRecieved | socketInited;
+interface toggleDark {
+    type: 'TOGGLE_DARK'
+}
+
+type AppActionTypes = RoomJoinRequest | RoomJoinGranted | RoomJoinDeclined | setUsers | messageRecieved | socketInited | toggleDark;
 
 export default AppActionTypes;
 
@@ -154,6 +158,12 @@ const sendMessage = (text: string): ThunkResult<void> => {
     }
 }
 
-export { loginAction, roomJoin, connectionInitAction, sendMessage }
+const toggleDark = (): AppActionTypes => {
+    return {
+        type: 'TOGGLE_DARK'
+    }
+}
+
+export { loginAction, roomJoin, connectionInitAction, sendMessage, toggleDark }
 
 

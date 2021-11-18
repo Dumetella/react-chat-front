@@ -13,7 +13,7 @@ export const MessageBubble = styled(Card)(({ theme }) => ({
     display: 'inline-block',
     borderTop: '1px solid rgba(0, 0, 0, 0.1)',
     backgroundColor: `${theme.palette.primary.light}`,
-    color: `#fff`,
+    color: `${theme.palette.text.primary}`,
     padding: '10px 15px 15px',
     maxWidth: '25rem',
     wordWrap: 'break-word',

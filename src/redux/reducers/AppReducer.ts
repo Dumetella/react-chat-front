@@ -28,6 +28,12 @@ function AppReducer(state = new AppState(), action: AppActionTypes): AppState {
                 messages: [...state.messages, new ChatMessage(action.payload.message)]
             }
         default: return state
+
+        case 'TOGGLE_DARK':
+            return {
+                ...state,
+                darkTheme: !state.darkTheme,
+            }
     }
 }
 

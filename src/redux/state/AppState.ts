@@ -8,6 +8,7 @@ class AppState {
     MyWS: WebSocket | undefined;
     users: ChatUser[];
     messages: ChatMessage[] | [];
+    darkTheme: boolean;
     constructor() {
         this.MyWS = undefined;
         this.joined = false;
@@ -15,6 +16,7 @@ class AppState {
         this.userName = "";
         this.users = [];
         this.messages = [];
+        this.darkTheme = false;
     }
 
 }

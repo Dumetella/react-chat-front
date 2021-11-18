@@ -10,7 +10,8 @@ class ChatMessage {
         this.text = obj && obj['text'] || '';
     }
     public get shortDate(): string {
-        return `${this.date.getHours()}:${this.date.getMinutes()}`;
+        const pad = (e: number) => e.toString().padStart(2, '0');
+        return `${pad(this.date.getHours())}:${pad(this.date.getMinutes())}`;
     }
 };
 

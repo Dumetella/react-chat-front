@@ -22,6 +22,10 @@ function Chat(props: ChatProps) {
   const { messages, roomId, onAddMessage, userName, users } = props;
 
   const onSendMessage = () => {
+    if (messageValue.trim() === '') {
+      setMessageValue('');
+      return
+    }
     onAddMessage(messageValue);
     setMessageValue('');
   };
@@ -47,7 +51,7 @@ function Chat(props: ChatProps) {
   return (
     <MainBox>
       <UsersBox>
-        <Box sx={{ margin: '20px 0px 20px 20px' }}>
+        <Box sx={{ padding: '20px 20px 20px 20px' }}>
           <Typography>Room:<b> {roomId}</b></Typography>
           <Divider />
           <Typography><b>Currently online ({users.length}):</b></Typography>
