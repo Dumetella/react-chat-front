@@ -5,8 +5,8 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { connectionInitAction, roomJoin, sendMessage, toggleDark } from '../redux/actions/AppAction';
 import { AppContainer } from '../style/Container';
 import { MaterialUISwitch } from '../style/ChatStyles';
-import { AppBar } from '@mui/material';
-import { ThemeProvider } from '@mui/system';
+import { AppBar, BottomNavigation, Typography } from '@mui/material';
+import { Box, ThemeProvider } from '@mui/system';
 import { theme } from '../style/theme';
 import { CssBaseline } from '@mui/material';
 
@@ -33,11 +33,6 @@ function App() {
     <>
       <ThemeProvider theme={theme(dark ? 'dark' : 'light')}>
         <CssBaseline />
-        <AppBar>
-          <MaterialUISwitch sx={{ marginLeft: 'auto', marginRight: '40px' }}
-            onClick={() => (darkTheme())}
-          />
-        </AppBar>
         <AppContainer>
           {!joined ? (
             <LoginForm onLogin={onLogin} />
@@ -53,4 +48,6 @@ function App() {
 export default App;
 
 
-
+{/* <MaterialUISwitch sx={{ marginLeft: 'auto', marginRight: '40px' }}
+  onClick={() => (darkTheme())}
+/> */}

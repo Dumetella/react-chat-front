@@ -23,7 +23,7 @@ function LoginForm(props: LoginProps) {
     };
 
     return (
-        <Container sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <Box sx={{ display: 'flex', flexDirection: 'column', width: '300px', paddingTop: '20%' }}>
                 <Typography variant="h2" marginBottom="20px">React Chat</Typography>
                 <TextField
@@ -50,7 +50,7 @@ function LoginForm(props: LoginProps) {
                 >Join
                 </Button>
             </Box>
-        </Container>
+        </Box>
     );
 }
 

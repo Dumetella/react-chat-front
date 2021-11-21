@@ -16,7 +16,7 @@ class AppState {
         this.userName = "";
         this.users = [];
         this.messages = [];
-        this.darkTheme = false;
+        this.darkTheme = true;
     }
 
 }

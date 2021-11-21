@@ -5,7 +5,7 @@ export const theme = (mode: 'dark' | 'light') => createTheme({
         mode,
         ...(mode === 'light'
             ? {
-                // palette values for dark mode
+                // palette values for light mode
                 primary: {
                     light: '#419FD9',
                     main: '#FFFFFF',
@@ -25,15 +25,15 @@ export const theme = (mode: 'dark' | 'light') => createTheme({
             : {
                 // palette values for dark mode
                 primary: {
-                    light: '#2B5278',
-                    main: '#17212B',
-                    dark: '#0E1621',
+                    light: '#212121',
+                    main: '#8774E1',
+                    dark: '#0f0f0f',
                     contrastText: '#66727D',
                 },
                 divider: '#66727D',
                 background: {
-                    default: '#0E1621',
-                    paper: '#0E1621',
+                    default: '#181818',
+                    paper: '#181818',
                 },
                 text: {
                     primary: '#fff',

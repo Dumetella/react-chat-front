@@ -4,33 +4,71 @@ import { Input, Switch, TextField } from "@mui/material";
 
 export const MainBox = styled(Box)(({ theme }) => ({
     display: 'flex',
-    height: '720px',
+    height: '100%',
+    maxHeight: '100%',
+    minHeight: '100%',
+    position: 'relative',
+    overflow: 'hidden',
+    flex: '1 0'
+}));
+
+export const LeftColumn = styled(Box)(({ theme }) => ({
+    display: 'flex',
+    height: '100%',
+    maxHeight: '100%',
+    minHeight: '100%',
     border: '2px solid rgba(159, 183, 197, 0.2)',
-    marginTop: '50px'
+    position: 'relative',
+    overflow: 'hidden',
+    flex: '1 1 auto',
+    flexDirection: 'column',
+    minWidth: '12rem',
+    maxWidth: 'calc(1680px / 6)'
+}));
+
+export const RightColumn = styled(Box)(({ theme }) => ({
+    display: 'flex',
+    height: '100%',
+    maxHeight: '100%',
+    minHeight: '100%',
+    border: '2px solid rgba(159, 183, 197, 0.2)',
+    position: 'relative',
+    overflow: 'hidden',
+    flex: '3',
+    '&::before': {
+        boxSizing: 'inherit'
+    }
 }));
 
 export const UsersBox = styled(Box)(({ theme }) => ({
+    display: 'flex',
+    flexDirection: 'column',
     borderRight: '2px solid rgba(159, 183, 197, 0.1)',
-    width: '200px',
-    backgroundColor: `${theme.palette.primary.main}`,
-    color: `${theme.palette.primary.contrastText}`
+    width: 'calc(1680px / 6)',
+    flex: '1 0',
+    backgroundColor: `${theme.palette.primary.light}`,
+    color: `${theme.palette.primary.contrastText}`,
+    minHeight: '720px'
 }));
 
 export const ChatBox = styled(Box)(({ theme }) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    flex: '1',
+    minWidth: '100%',
+    width: '100%',
+    display: 'grid',
+    gridTemplateColumns: '100%',
+    gridTemplateRow: '100%',
+    height: '100%',
 }));
 
 export const MessageBox = styled(Box)(({ theme }) => ({
-    height: '100%',
+    height: '720px',
     overflow: 'auto',
     backgroundColor: `${theme.palette.primary.dark}`
 }));
 
 export const InputBox = styled(Box)(({ theme }) => ({
     borderTop: '1px solid rgba(0, 0, 0, 0.1)',
-    backgroundColor: `${theme.palette.primary.main}`,
+    backgroundColor: `${theme.palette.primary.light}`,
     color: `${theme.palette.text.primary}`,
 }));
 

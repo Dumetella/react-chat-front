@@ -1,9 +1,9 @@
-import { Button, Card, CardMedia, Container, Divider, ListItem, Paper, Stack, TextField, Typography } from '@mui/material';
+import { Divider, Stack, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
 import { ChatMessage } from 'src/model/ChatMessage';
 import ChatUser from 'src/model/ChatUser';
-import { ChatBox, InputBox, MainBox, MessageBox, TextField2, UsersBox } from '../style/ChatStyles';
+import { ChatBox, InputBox, LeftColumn, MainBox, MessageBox, RightColumn, TextField2, UsersBox } from '../style/ChatStyles';
 import Message from './Message';
 
 
@@ -50,8 +50,8 @@ function Chat(props: ChatProps) {
 
   return (
     <MainBox>
-      <UsersBox>
-        <Box sx={{ padding: '20px 20px 20px 20px' }}>
+      <LeftColumn>
+        <UsersBox>
           <Typography>Room:<b> {roomId}</b></Typography>
           <Divider />
           <Typography><b>Currently online ({users.length}):</b></Typography>
@@ -60,27 +60,29 @@ function Chat(props: ChatProps) {
               <Typography key={index}>{user.name}</Typography>
             ))}
           </Stack>
-        </Box>
-      </UsersBox>
-      <ChatBox>
-        {messages ?
-          <MessageBox ref={messagesRef}>
-            {messages.map((message, index) => (
-              <Message key={index} message={message} />
-            ))}
-          </MessageBox> : null}
-        <InputBox component="form">
-          <TextField2
-            value={messageValue}
-            onChange={(e) => setMessageValue(e.target.value)}
-            multiline
-            fullWidth={true}
-            onKeyDown={keyPress}
-            placeholder='Write a message'
-            disableUnderline
-          />
-        </InputBox>
-      </ChatBox>
+        </UsersBox>
+      </LeftColumn>
+      <RightColumn>
+        <ChatBox>
+          {messages ?
+            <MessageBox ref={messagesRef}>
+              {messages.map((message, index) => (
+                <Message key={index} message={message} />
+              ))}
+            </MessageBox> : null}
+          <InputBox component="form">
+            <TextField2
+              value={messageValue}
+              onChange={(e) => setMessageValue(e.target.value)}
+              multiline
+              fullWidth={true}
+              onKeyDown={keyPress}
+              placeholder='Write a message'
+              disableUnderline
+            />
+          </InputBox>
+        </ChatBox>
+      </RightColumn>
     </MainBox>
   );
 }
