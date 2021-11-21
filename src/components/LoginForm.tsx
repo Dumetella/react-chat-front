@@ -23,8 +23,8 @@ function LoginForm(props: LoginProps) {
     };
 
     return (
-        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', width: '300px', paddingTop: '20%' }}>
+        <Box sx={{ display: 'flex', margin: 'auto', minHeight: "100vh" }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', width: '300px', paddingTop: '40%' }}>
                 <Typography variant="h2" marginBottom="20px">React Chat</Typography>
                 <TextField
                     id="outlined-basic"

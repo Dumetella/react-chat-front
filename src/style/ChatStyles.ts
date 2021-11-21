@@ -9,7 +9,8 @@ export const MainBox = styled(Box)(({ theme }) => ({
     minHeight: '100%',
     position: 'relative',
     overflow: 'hidden',
-    flex: '1 0'
+    flex: '1 0',
+
 }));
 
 export const LeftColumn = styled(Box)(({ theme }) => ({
@@ -17,7 +18,6 @@ export const LeftColumn = styled(Box)(({ theme }) => ({
     height: '100%',
     maxHeight: '100%',
     minHeight: '100%',
-    border: '2px solid rgba(159, 183, 197, 0.2)',
     position: 'relative',
     overflow: 'hidden',
     flex: '1 1 auto',
@@ -31,7 +31,6 @@ export const RightColumn = styled(Box)(({ theme }) => ({
     height: '100%',
     maxHeight: '100%',
     minHeight: '100%',
-    border: '2px solid rgba(159, 183, 197, 0.2)',
     position: 'relative',
     overflow: 'hidden',
     flex: '3',
@@ -48,7 +47,7 @@ export const UsersBox = styled(Box)(({ theme }) => ({
     flex: '1 0',
     backgroundColor: `${theme.palette.primary.light}`,
     color: `${theme.palette.primary.contrastText}`,
-    minHeight: '720px'
+    minHeight: '100vh'
 }));
 
 export const ChatBox = styled(Box)(({ theme }) => ({
@@ -57,25 +56,26 @@ export const ChatBox = styled(Box)(({ theme }) => ({
     display: 'grid',
     gridTemplateColumns: '100%',
     gridTemplateRow: '100%',
-    height: '100%',
+    height: '100vh',
 }));
 
 export const MessageBox = styled(Box)(({ theme }) => ({
-    height: '720px',
+    maxHeight: '100%',
     overflow: 'auto',
-    backgroundColor: `${theme.palette.primary.dark}`
+    backgroundColor: `${theme.palette.primary.dark}`,
+    minHeight: 'calc(100vh - 37px)'
 }));
 
 export const InputBox = styled(Box)(({ theme }) => ({
     borderTop: '1px solid rgba(0, 0, 0, 0.1)',
     backgroundColor: `${theme.palette.primary.light}`,
     color: `${theme.palette.text.primary}`,
+    height: '37px',
 }));
 
 export const TextField2 = styled(Input)(({ theme }) => ({
     color: `${theme.palette.text.primary}`,
     width: '90%',
-    margin: '20px 0px 20px 20px'
 }));
 
 export const MaterialUISwitch = styled(Switch)(({ theme }) => ({
