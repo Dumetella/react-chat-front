@@ -1,8 +1,9 @@
 {
-    "name": "react-typescript",
+    "name": "react-chat",
     "version": "2.0.0",
-    "description": "Analog to outdated 'npx create-react-app'",
+    "description": "websocket react chat application",
     "scripts": {
+        "preinstall": "npx npm-force-resolutions",
         "start": "webpack serve --mode development --progress --hot --config ./configs/webpack.config.development.js",
         "build": "webpack --mode production --config ./configs/webpack.config.production.js",
         "lint": "eslint --config ./configs/.eslintrc.json . --ext .ts,.tsx",
@@ -18,9 +19,14 @@
     ],
     "author": "Dumetella",
     "dependencies": {
-        "@emotion/react": "^11.5.0",
-        "@emotion/styled": "^11.3.0",
-        "@mui/material": "^5.1.0",
+        "@emotion/react": "latest",
+        "@emotion/styled": "latest",
+        "@mui/icons-material": "5.1.1",
+        "@mui/material": "5.1.1",
+        "@mui/private-theming": "5.1.1",
+        "@mui/styled-engine": "5.1.1",
+        "@mui/system": "5.1.1",
+        "@mui/utils": "5.1.1",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
         "react-redux": "^7.2.6",
@@ -44,6 +50,7 @@
         "html-webpack-plugin": "^5.5.0",
         "jest": "^27.3.1",
         "mini-css-extract-plugin": "^2.4.3",
+        "npm-force-resolutions": "^0.0.10",
         "postcss": "^8.3.11",
         "postcss-loader": "^6.2.0",
         "postcss-preset-env": "^6.7.0",
@@ -57,5 +64,9 @@
         "webpack": "^5.61.0",
         "webpack-cli": "^4.9.1",
         "webpack-dev-server": "^4.4.0"
+    },
+    "resolutions": {
+        "@mui/utils": "5.1.1",
+        "@mui/material": "5.1.1"
     }
 }

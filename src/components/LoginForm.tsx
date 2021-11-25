@@ -1,5 +1,4 @@
-import { Button, Container, TextField, Typography } from '@mui/material';
-import { Box, typography } from '@mui/system';
+import { Box, Button, TextField, Typography } from '@mui/material';
 import React from 'react';
 
 interface LoginProps {
@@ -24,7 +23,7 @@ function LoginForm(props: LoginProps) {
 
     return (
         <Box sx={{ display: 'flex', margin: 'auto', minHeight: "100vh" }}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', width: '300px', paddingTop: '40%' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', width: '300px', marginTop: '50%' }}>
                 <Typography variant="h2" marginBottom="20px">React Chat</Typography>
                 <TextField
                     id="outlined-basic"
@@ -33,6 +32,7 @@ function LoginForm(props: LoginProps) {
                     sx={{ marginBottom: "10px" }}
                     value={roomId}
                     onChange={(e) => setRoomId(e.target.value)}
+                    inputProps={{ maxLength: 12 }}
                 />
                 <TextField
                     id="outlined-basic"
@@ -41,6 +41,7 @@ function LoginForm(props: LoginProps) {
                     value={userName}
                     sx={{ marginBottom: "10px" }}
                     onChange={(e) => setUserName(e.target.value)}
+                    inputProps={{ maxLength: 12 }}
                 />
                 <Button
                     variant="contained"

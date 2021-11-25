@@ -1,6 +1,29 @@
 import { createTheme } from '@mui/material/styles';
 
+declare module '@mui/material/styles' {
+    interface Theme {
+        status: {
+            danger: string;
+        };
+    }
+
+    interface ThemeOptions {
+        status?: {
+            danger?: string;
+        };
+    }
+}
+
 export const theme = (mode: 'dark' | 'light') => createTheme({
+    components: {
+        MuiCssBaseline: {
+            styleOverrides: `
+              h1 {
+                color: red;
+              }
+            `,
+        }
+    },
     palette: {
         mode,
         ...(mode === 'light'

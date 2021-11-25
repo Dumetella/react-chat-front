@@ -2,11 +2,9 @@ import React, { useEffect } from 'react';
 import Chat from './Chat';
 import LoginForm from './LoginForm';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { connectionInitAction, roomJoin, sendMessage, toggleDark } from '../redux/actions/AppAction';
+import { connectionInitAction, roomJoin, sendMessage } from '../redux/actions/AppAction';
 import { AppContainer } from '../style/Container';
-import { MaterialUISwitch } from '../style/ChatStyles';
-import { AppBar, BottomNavigation, Typography } from '@mui/material';
-import { Box, ThemeProvider } from '@mui/system';
+import { ThemeProvider } from '@mui/material';
 import { theme } from '../style/theme';
 import { CssBaseline } from '@mui/material';
 
@@ -25,9 +23,7 @@ function App() {
     dispatch(connectionInitAction());
   }, [])
 
-  const darkTheme = () => {
-    dispatch(toggleDark());
-  }
+
 
   return (
     <>

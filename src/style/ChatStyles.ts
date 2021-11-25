@@ -1,6 +1,5 @@
-import { Box } from "@mui/system";
 import { styled } from '@mui/material/styles';
-import { Input, Switch, TextField } from "@mui/material";
+import { Box, Input, Switch, TextField } from "@mui/material";
 
 export const MainBox = styled(Box)(({ theme }) => ({
     display: 'flex',
@@ -23,7 +22,21 @@ export const LeftColumn = styled(Box)(({ theme }) => ({
     flex: '1 1 auto',
     flexDirection: 'column',
     minWidth: '12rem',
-    maxWidth: 'calc(1680px / 6)'
+    maxWidth: 'calc(1680px / 6)',
+    [theme.breakpoints.down('md')]: {
+        display: 'none'
+    },
+}));
+
+export const UsersBox = styled(Box)(({ theme }) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    borderRight: '2px solid rgba(159, 183, 197, 0.1)',
+    width: 'calc(1680px / 6)',
+    flex: '1 0',
+    backgroundColor: `${theme.palette.primary.light}`,
+    color: `${theme.palette.primary.contrastText}`,
+    minHeight: '100vh',
 }));
 
 export const RightColumn = styled(Box)(({ theme }) => ({
@@ -39,31 +52,78 @@ export const RightColumn = styled(Box)(({ theme }) => ({
     }
 }));
 
-export const UsersBox = styled(Box)(({ theme }) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    borderRight: '2px solid rgba(159, 183, 197, 0.1)',
-    width: 'calc(1680px / 6)',
-    flex: '1 0',
-    backgroundColor: `${theme.palette.primary.light}`,
-    color: `${theme.palette.primary.contrastText}`,
-    minHeight: '100vh'
-}));
-
-export const ChatBox = styled(Box)(({ theme }) => ({
+export const RightOuterBox = styled(Box)(({ theme }) => ({
     minWidth: '100%',
     width: '100%',
     display: 'grid',
     gridTemplateColumns: '100%',
     gridTemplateRow: '100%',
+    backgroundColor: `${theme.palette.primary.dark}`,
     height: '100vh',
 }));
 
-export const MessageBox = styled(Box)(({ theme }) => ({
-    maxHeight: '100%',
-    overflow: 'auto',
-    backgroundColor: `${theme.palette.primary.dark}`,
-    minHeight: 'calc(100vh - 37px)'
+export const RightInnerBox = styled(Box)(({ theme }) => ({
+    flexDirection: 'column',
+    gridRowStart: '1',
+    gridColumnStart: '1',
+    backgroundColor: '#fff',
+    overflow: 'hidden',
+    width: '100%',
+    display: 'flex',
+}));
+
+export const RightBackgroundBox = styled(Box)(({ theme }) => ({
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    bottom: '0',
+    right: '0',
+    overflow: 'hidden',
+    backgroundColor: `${theme.palette.primary.light}`,
+    boxSizing: 'inherit',
+}));
+
+export const RightBackground = styled(Box)(({ theme }) => ({
+    backgroundImage: `${theme.palette.mode === 'light' ? 'url("/assets/bg.jpeg")' : 'none'}`,
+    opacity: '1',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center center',
+    backgroundColor: 'inherit',
+    height: '100%',
+}));
+
+export const RightHeader = styled(Box)(({ theme }) => ({
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '0 1rem',
+    minHeight: '3.5rem',
+    flex: '0 0 auto',
+    userSelect: 'none',
+    zIndex: 1,
+    width: '100%',
+    backgroundColor: '#fff'
+}));
+
+export const HeaderUtils = styled(Box)(({ theme }) => ({
+    position: 'relative',
+    zIndex: 1,
+    display: 'flex',
+    alignItems: 'center',
+    flex: '0 0 auto',
+    marginLeft: 'auto'
+}));
+
+export const BubblesBox = styled(Box)(({ theme }) => ({
+    width: '100%',
+    flex: '1 1 auto',
+    position: 'relative',
+    boxSizing: 'inherit',
+    scrollbarColor: 'rgba(255, 255, 255, .2)'
+}));
+
+export const ChatInput = styled(Box)(({ theme }) => ({
+
 }));
 
 export const InputBox = styled(Box)(({ theme }) => ({
@@ -71,12 +131,32 @@ export const InputBox = styled(Box)(({ theme }) => ({
     backgroundColor: `${theme.palette.primary.light}`,
     color: `${theme.palette.text.primary}`,
     height: '37px',
+    margin: '0 15 15rem 15rem'
 }));
 
 export const TextField2 = styled(Input)(({ theme }) => ({
     color: `${theme.palette.text.primary}`,
-    width: '90%',
+    width: '100%',
 }));
+
+
+
+export const MessageBox = styled(Box)(({ theme }) => ({
+    overflowY: 'auto',
+    scrollbarWidth: 'thin',
+    height: 'auto',
+    display: 'block',
+    width: '100%',
+    maxHeight: '100%',
+    overflowX: 'hidden',
+    position: 'absolute',
+    top: '0px',
+    left: '0px',
+    bottom: '0px',
+    right: '0px',
+}));
+
+
 
 export const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 62,
