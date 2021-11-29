@@ -1,7 +1,7 @@
-import { Box, Card, Typography } from '@mui/material'
 import React from 'react'
+import { SimpleText } from '../style/ChatStyles'
 import { ChatMessage } from '../model/ChatMessage'
-import { MessageBox, MessageBubble } from '../style/MessageStyles'
+import { InnerMessageBox, MessageBox, MessageBubble } from '../style/MessageStyles'
 
 
 interface MessageProps {
@@ -11,22 +11,16 @@ interface MessageProps {
 export default function Message(props: MessageProps): JSX.Element {
     return (
         <MessageBox>
-            <MessageBubble variant="outlined">
-                <Box
-                    sx={{
-                        display: 'inline-flex',
-                    }}
-                >
-                    <Typography
-                        sx={{ marginRight: '0.5rem' }}
-                    >
+            <MessageBubble>
+                <InnerMessageBox>
+                    <SimpleText>
                         {props.message.sender.name}
-                    </Typography>
-                    <Typography>{(props.message.shortDate)}</Typography>
-                </Box>
-                <Typography variant="body1">
+                    </SimpleText>
+                    <SimpleText>{(props.message.shortDate)}</SimpleText>
+                </InnerMessageBox>
+                <SimpleText>
                     {props.message.text}
-                </Typography>
+                </SimpleText>
             </MessageBubble>
         </MessageBox>
     )

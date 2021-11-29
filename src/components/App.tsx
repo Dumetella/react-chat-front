@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
-import Chat from './Chat';
-import LoginForm from './LoginForm';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { connectionInitAction, roomJoin, sendMessage } from '../redux/actions/AppAction';
-import { AppContainer } from '../style/Container';
-import { ThemeProvider } from '@mui/material';
-import { theme } from '../style/theme';
-import { CssBaseline } from '@mui/material';
+import { Normalize } from 'styled-normalize';
+import { ThemeProvider } from 'styled-components';
+import { AppContainer, GlobalBackground } from '../style/Container';
+import Chat from './Chat';
+import LoginForm from './LoginForm';
+import { DarkThemeSSS } from '../style/Themes/DarkTheme';
+import { LightThemeSSS } from '../style/Themes/LightTheme';
+
 
 function App() {
 
@@ -27,8 +29,9 @@ function App() {
 
   return (
     <>
-      <ThemeProvider theme={theme(dark ? 'dark' : 'light')}>
-        <CssBaseline />
+      <ThemeProvider theme={dark ? DarkThemeSSS : LightThemeSSS}>
+        <Normalize />
+        <GlobalBackground />
         <AppContainer>
           {!joined ? (
             <LoginForm onLogin={onLogin} />

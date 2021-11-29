@@ -1,10 +1,9 @@
-import { Divider, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { ChatMessage } from 'src/model/ChatMessage';
 import ChatUser from 'src/model/ChatUser';
 import { toggleDark } from '../redux/actions/AppAction';
 import { useAppDispatch } from '../redux/hooks';
-import { BubblesBox, RightBackground, RightBackgroundBox, RightOuterBox, RightHeader, HeaderUtils, InputBox, LeftColumn, MainBox, MaterialUISwitch, MessageBox, RightColumn, TextField2, UsersBox, RightInnerBox } from '../style/ChatStyles';
+import { BubblesBox, RightBackground, RightBackgroundBox, RightOuterBox, RightHeader, HeaderUtils, LeftColumn, MainBox, RightColumn, UsersBox, RightInnerBox, BubblesInner, BubblesScrollable, Divider, SimpleText, ChatInput, InputContainer, InputWrapper, NewMessageBox, FinalInputContainer, Input } from '../style/ChatStyles';
 import Message from './Message';
 
 
@@ -59,14 +58,14 @@ function Chat(props: ChatProps) {
     <MainBox>
       <LeftColumn>
         <UsersBox>
-          <Typography>Room:<b> {roomId}</b></Typography>
+          <SimpleText>Room:<b> {roomId}</b></SimpleText>
           <Divider />
-          <Typography><b>Currently online ({users.length}):</b></Typography>
-          <Stack>
+          <SimpleText><b>Currently online ({users.length}):</b></SimpleText>
+          <div>
             {users.map((user, index) => (
-              <Typography key={index}>{user.name}</Typography>
+              <SimpleText key={index}>{user.name}</SimpleText>
             ))}
-          </Stack>
+          </div>
         </UsersBox>
       </LeftColumn>
       <RightColumn>
@@ -77,31 +76,38 @@ function Chat(props: ChatProps) {
             </RightBackgroundBox>
             <RightHeader>
               <HeaderUtils>
-                <MaterialUISwitch
-                  onClick={() => (darkTheme())}
-                />
+                <button
+                  onClick={() => (darkTheme())}>
+                  ABOBA
+                </button>
               </HeaderUtils>
             </RightHeader>
             <BubblesBox>
-              {messages ?
-                <MessageBox ref={messagesRef}>
-                  {messages.map((message, index) => (
-                    <Message key={index} message={message} />
-                  ))}
-                </MessageBox> : null}
+              <BubblesScrollable ref={messagesRef}>
+                {messages ?
+                  <BubblesInner >
+                    {messages.map((message, index) => (
+                      <Message key={index} message={message} />
+                    ))}
+                  </BubblesInner> : null}
+              </BubblesScrollable>
             </BubblesBox>
-            <InputBox component="form">
-              <TextField2
-                value={messageValue}
-                onChange={(e) => setMessageValue(e.target.value)}
-                multiline
-                fullWidth={true}
-                onKeyDown={keyPress}
-                placeholder='Write a message'
-                disableUnderline
-                inputProps={{ maxLength: 1024 }}
-              />
-            </InputBox>
+            <ChatInput>
+              <InputContainer>
+                <InputWrapper>
+                  <NewMessageBox>
+                    <FinalInputContainer>
+                      <Input type="text"
+                        value={messageValue}
+                        onChange={(e) => setMessageValue(e.target.value)}
+                        onKeyDown={keyPress}
+                      >
+                      </Input>
+                    </FinalInputContainer>
+                  </NewMessageBox>
+                </InputWrapper>
+              </InputContainer>
+            </ChatInput>
           </RightInnerBox>
         </RightOuterBox>
       </RightColumn>
@@ -110,3 +116,15 @@ function Chat(props: ChatProps) {
 }
 
 export default Chat;
+
+
+{/* <TextField2
+  value={messageValue}
+  onChange={(e) => setMessageValue(e.target.value)}
+  multiline
+  fullWidth={true}
+  onKeyDown={keyPress}
+  placeholder='Write a message'
+  disableUnderline
+  inputProps={{ maxLength: 1024 }}
+/> */}

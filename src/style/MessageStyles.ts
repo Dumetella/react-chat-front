@@ -1,13 +1,12 @@
-import { styled } from '@mui/material/styles';
-import { Box, Card } from "@mui/material";
+import styled from "styled-components";
 
-export const MessageBox = styled(Box)(({ theme }) => ({
+export const MessageBox = styled.div(({ theme }) => ({
     width: '90%',
     paddingTop: '1.5rem',
     paddingLeft: '1.5rem'
 }));
 
-export const MessageBubble = styled(Card)(({ theme }) => ({
+export const MessageBubble = styled.div(({ theme }) => ({
     marginBottom: '20px',
     display: 'inline-block',
     borderTop: '1px solid rgba(0, 0, 0, 0.1)',
@@ -18,5 +17,10 @@ export const MessageBubble = styled(Card)(({ theme }) => ({
     wordWrap: 'break-word',
     whiteSpace: 'break-spaces',
     width: 'auto',
-    borderRadius: '8px'
+    borderRadius: '8px',
+    minWidth: '5rem',
+}));
+
+export const InnerMessageBox = styled.div(({ theme }) => ({
+    display: 'inline-flex',
 }));

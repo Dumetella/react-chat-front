@@ -1,5 +1,6 @@
-import { Box, Button, TextField, Typography } from '@mui/material';
 import React from 'react';
+import { Header, Form, SInput, InputContainer, Label, FormContainer } from '../style/LoginFormStyles';
+import LoginButton from './Internal/LoginButton';
 
 interface LoginProps {
     onLogin: (roomId: string, userName: string) => void
@@ -22,37 +23,50 @@ function LoginForm(props: LoginProps) {
     };
 
     return (
-        <Box sx={{ display: 'flex', margin: 'auto', minHeight: "100vh" }}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', width: '300px', marginTop: '50%' }}>
-                <Typography variant="h2" marginBottom="20px">React Chat</Typography>
-                <TextField
-                    id="outlined-basic"
-                    label="Room ID"
-                    variant="outlined"
-                    sx={{ marginBottom: "10px" }}
-                    value={roomId}
-                    onChange={(e) => setRoomId(e.target.value)}
-                    inputProps={{ maxLength: 12 }}
-                />
-                <TextField
-                    id="outlined-basic"
-                    label="Nickname"
-                    variant="outlined"
-                    value={userName}
-                    sx={{ marginBottom: "10px" }}
-                    onChange={(e) => setUserName(e.target.value)}
-                    inputProps={{ maxLength: 12 }}
-                />
-                <Button
-                    variant="contained"
+        <>
+            <div className="form-container">
+                <Header>React Chat</Header>
+                <div className="input-container">
+                    <input
+                        type="text"
+                        id="roomid"
+                        value={roomId}
+                        onChange={(e) => setRoomId(e.target.value)}
+                    />
+                    <label>Room Id</label>
+                </div>
+                <div className="input-container">
+                    <input
+                        type="text"
+                        id="username"
+                        value={userName}
+                        onChange={(e) => setUserName(e.target.value)}
+                    />
+                    <label>Username</label>
+                </div>
+                <LoginButton
                     disabled={isLoading}
                     onClick={onEnter}
-                    sx={{ minHeight: '3rem' }}
-                >Join
-                </Button>
-            </Box>
-        </Box>
+                    text={'Join'}
+                />
+            </div>
+        </>
     );
 }
 
 export default LoginForm;
+
+
+// <div class="form-container">
+//   <form action="">
+//     <div class="input-container">
+//       <input type="text" id="name" required/>
+//       <label for="name">First Name</label>
+//     </div>
+
+//     <div class="input-container">
+//       <input type="email" id="email" required/>
+//       <label for="email">Email</label>
+//     </div>
+//   </form>
+// </div>

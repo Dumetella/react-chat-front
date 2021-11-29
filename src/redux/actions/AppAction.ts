@@ -58,6 +58,7 @@ export default AppActionTypes;
 
 const connectionInitAction = (): ThunkResult<void> => {
     return (dispatch, getState) => {
+        // const ws = new WebSocket(`ws://${location.host}/`);
         const ws = new WebSocket('ws://localhost:32280/');
         ws.addEventListener('message', (message) => {
             const msg: SocketMessage = JSON.parse(message.data);
