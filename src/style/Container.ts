@@ -24,11 +24,18 @@ body {
     box-sizing: inherit;
     margin: 0px;
     color: rgb(255, 255, 255);
+    background-color: rgb(24, 24, 24);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     font-weight: 400;
     font-size: 1rem;
     line-height: 1.5;
     letter-spacing: 0.00938em;
-    background-color: rgb(24, 24, 24);
 }
 `

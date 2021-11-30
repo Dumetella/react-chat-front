@@ -1,6 +1,7 @@
 import React from 'react';
-import { Header, Form, SInput, InputContainer, Label, FormContainer } from '../style/LoginFormStyles';
-import LoginButton from './Internal/LoginButton';
+import { LHeader, LInnerContainer, LOuterContainer } from '../style/LoginFormStyles';
+import FancyInput from './Internal/FancyInput';
+import FancyButton from './Internal/FancyButton';
 
 interface LoginProps {
     onLogin: (roomId: string, userName: string) => void
@@ -22,34 +23,43 @@ function LoginForm(props: LoginProps) {
         props.onLogin(roomId, userName);
     };
 
+    const inputs = document.querySelectorAll("input");
+    inputs.forEach((input: HTMLInputElement) => {
+        input.addEventListener("blur", (event: any) => {
+            if (event.target.value) {
+                input.classList.add("is-valid");
+            } else {
+                input.classList.remove("is-valid");
+            }
+        });
+    });
+
     return (
         <>
-            <div className="form-container">
-                <Header>React Chat</Header>
-                <div className="input-container">
-                    <input
+            <LOuterContainer>
+                <LInnerContainer>
+                    <LHeader>React Chat</LHeader>
+                    <FancyInput
+                        label="Room Id"
                         type="text"
                         id="roomid"
                         value={roomId}
                         onChange={(e) => setRoomId(e.target.value)}
                     />
-                    <label>Room Id</label>
-                </div>
-                <div className="input-container">
-                    <input
+                    <FancyInput
                         type="text"
                         id="username"
+                        label="Username"
                         value={userName}
                         onChange={(e) => setUserName(e.target.value)}
                     />
-                    <label>Username</label>
-                </div>
-                <LoginButton
-                    disabled={isLoading}
-                    onClick={onEnter}
-                    text={'Join'}
-                />
-            </div>
+                    <FancyButton
+                        disabled={isLoading}
+                        onClick={onEnter}
+                        text={'Join'}
+                    />
+                </LInnerContainer>
+            </LOuterContainer>
         </>
     );
 }

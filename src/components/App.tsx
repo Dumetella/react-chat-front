@@ -32,13 +32,13 @@ function App() {
       <ThemeProvider theme={dark ? DarkThemeSSS : LightThemeSSS}>
         <Normalize />
         <GlobalBackground />
-        <AppContainer>
-          {!joined ? (
-            <LoginForm onLogin={onLogin} />
-          ) : (
+        {!joined ? (
+          <LoginForm onLogin={onLogin} />
+        ) : (
+          <AppContainer>
             <Chat {...chat} onAddMessage={(m) => dispatch(sendMessage(m))} />
-          )}
-        </AppContainer>
+          </AppContainer>
+        )}
       </ThemeProvider>
     </>
   );

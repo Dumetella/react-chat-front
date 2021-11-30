@@ -1,9 +1,12 @@
-import styled from "styled-components";
+import styled, { DefaultTheme } from "styled-components";
 
+interface DefaultStyledComponent {
+    theme: DefaultTheme;
+}
 
-export const Divider = styled.div`
+export const Divider = styled.div<DefaultStyledComponent>`
     width: 100%;
-    border-top: 1px solid #fff;
+    border-top: ${(props) => props.theme.palette.divider};
 `
 
 export const SimpleText = styled.div(({ theme }) => ({
@@ -20,18 +23,22 @@ export const MainBox = styled.div(({ theme }) => ({
     flex: '1 0',
 }));
 
-export const LeftColumn = styled.div(({ theme }) => ({
-    display: 'flex',
-    height: '100%',
-    maxHeight: '100%',
-    minHeight: '100%',
-    position: 'relative',
-    overflow: 'hidden',
-    flex: '1 1 auto',
-    flexDirection: 'column',
-    minWidth: '12rem',
-    maxWidth: 'calc(1680px / 6)',
-}));
+export const LeftColumn = styled.div`
+    display: flex;
+    height: 100%;
+    max-height: 100%;
+    min-height: 100%;
+    position: relative;
+    overflow: hidden;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-width: 12rem;
+    max-width: calc(1680px / 6);
+    @media ${(props) => props.theme.breakpoints.md} {
+        display: none;
+    }
+`
+
 
 export const UsersBox = styled.div(({ theme }) => ({
     display: 'flex',

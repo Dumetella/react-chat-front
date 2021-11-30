@@ -7,7 +7,7 @@ interface LoginButtonProps extends React.DetailedHTMLProps<React.ButtonHTMLAttri
     text?: string;
 }
 
-export default function LoginButton(props: LoginButtonProps): JSX.Element {
+export default function FancyButton(props: LoginButtonProps): JSX.Element {
     return (
         <Button onClick={props.onClick}>
             <Label>{props.text}</Label>
