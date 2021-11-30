@@ -1,6 +1,11 @@
 import 'styled-components';
 
 declare module 'styled-components' {
+
+    export interface DefaultStyledComponent {
+        theme: DefaultTheme;
+    }
+
     export interface DefaultTheme {
         type: 'dark' | 'light',
         palette: {

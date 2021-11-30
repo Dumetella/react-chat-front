@@ -45,6 +45,7 @@ function LoginForm(props: LoginProps) {
                         id="roomid"
                         value={roomId}
                         onChange={(e) => setRoomId(e.target.value)}
+                        maxLength={12}
                     />
                     <FancyInput
                         type="text"
@@ -52,6 +53,7 @@ function LoginForm(props: LoginProps) {
                         label="Username"
                         value={userName}
                         onChange={(e) => setUserName(e.target.value)}
+                        maxLength={18}
                     />
                     <FancyButton
                         disabled={isLoading}
@@ -65,18 +67,3 @@ function LoginForm(props: LoginProps) {
 }
 
 export default LoginForm;
-
-
-// <div class="form-container">
-//   <form action="">
-//     <div class="input-container">
-//       <input type="text" id="name" required/>
-//       <label for="name">First Name</label>
-//     </div>
-
-//     <div class="input-container">
-//       <input type="email" id="email" required/>
-//       <label for="email">Email</label>
-//     </div>
-//   </form>
-// </div>

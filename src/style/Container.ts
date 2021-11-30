@@ -1,6 +1,6 @@
-import styled, { createGlobalStyle } from "styled-components"
+import styled, { createGlobalStyle, DefaultStyledComponent } from "styled-components"
 
-export const AppContainer = styled.div`
+export const AppContainer = styled.div<DefaultStyledComponent>`
     min-height: 100%;
     width: 100%;
     margin: 0 auto;
@@ -16,15 +16,14 @@ export const AppContainer = styled.div`
 `
 
 export const GlobalBackground = createGlobalStyle`
+html,
 body {
     height: 100%;
     width: 100%;
-    margin: 0;
-    padding: 0;
     box-sizing: inherit;
-    margin: 0px;
-    color: rgb(255, 255, 255);
-    background-color: rgb(24, 24, 24);
+    color: ${(props) => props.theme.palette.text.primary};
+    background-color: ${(props) => props.theme.palette.background.default};
+    font-family: ${(props) => props.theme.fonts.main};
 }
 
 * {
