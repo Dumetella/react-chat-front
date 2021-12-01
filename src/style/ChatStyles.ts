@@ -2,7 +2,7 @@ import styled, { DefaultStyledComponent } from "styled-components";
 
 export const Divider = styled.div<DefaultStyledComponent>`
     width: 100%;
-    border-top: ${(props) => props.theme.palette.divider};
+    border-top: 2px solid ${(props) => props.theme.palette.divider};
 `
 
 export const SimpleText = styled.div<DefaultStyledComponent>`

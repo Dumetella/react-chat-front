@@ -4,6 +4,7 @@ import ChatUser from 'src/model/ChatUser';
 import { toggleDark } from '../redux/actions/AppAction';
 import { useAppDispatch } from '../redux/hooks';
 import { BubblesBox, RightBackground, RightBackgroundBox, RightOuterBox, RightHeader, HeaderUtils, LeftColumn, MainBox, RightColumn, UsersBox, RightInnerBox, BubblesInner, BubblesScrollable, Divider, SimpleText, ChatInput, InputContainer, InputWrapper, NewMessageBox, FinalInputContainer, Input } from '../style/ChatStyles';
+import FancySwitch from './Internal/FancySwitch';
 import Message from './Message';
 
 
@@ -76,10 +77,8 @@ function Chat(props: ChatProps) {
             </RightBackgroundBox>
             <RightHeader>
               <HeaderUtils>
-                <button
-                  onClick={() => (darkTheme())}>
-                  ABOBA
-                </button>
+                <SimpleText>Toggle Dark Theme</SimpleText>
+                <FancySwitch onClick={() => (darkTheme())} />
               </HeaderUtils>
             </RightHeader>
             <BubblesBox>
