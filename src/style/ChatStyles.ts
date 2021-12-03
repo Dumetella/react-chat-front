@@ -35,17 +35,6 @@ export const LeftColumn = styled.div<DefaultStyledComponent>`
     }
 `
 
-export const UsersBox = styled.div<DefaultStyledComponent>`
-    display: flex;
-    flex-direction: column;
-    border-right: 2px solid rgba(159, 183, 197, 0.1);
-    width: calc(1680px / 6);
-    flex: 1 0;
-    background-color: ${(props) => props.theme.palette.primary.light};
-    color: ${(props) => props.theme.palette.primary.contrastText};
-    min-height: 100vh;
-`
-
 export const RightColumn = styled.div<DefaultStyledComponent>`
     display: flex;
     height: 100%;
@@ -86,7 +75,7 @@ export const RightBackgroundBox = styled.div<DefaultStyledComponent>`
     bottom: 0;
     right: 0;
     overflow: hidden;
-    background-color: ${(props) => props.theme.palette.primary.light};
+    background-color: ${(props) => props.theme.palette.background.paper};
     box-sizing: inherit;
 `
 
@@ -109,7 +98,7 @@ export const RightHeader = styled.div<DefaultStyledComponent>`
     user-select: none;
     z-index: 1;
     width: 100%;
-    background-color: #000;
+    background-color: ${(props) => props.theme.palette.primary.light};
 `
 
 export const HeaderUtils = styled.div<DefaultStyledComponent>`
@@ -219,7 +208,11 @@ export const FinalInputContainer = styled.div<DefaultStyledComponent>`
     align-items: center;
 `
 
-export const Input = styled.input<DefaultStyledComponent>`
+export const Input = styled.textarea<DefaultStyledComponent>`
     width: 100%;
-    margin: 0 auto;
+    resize: none;
+    border-radius: 8px;
+    background-color: ${(props) => props.theme.palette.primary.light};
+    color: ${(props) => props.theme.palette.text.primary};
+    scrollbar-width: thin;
 `

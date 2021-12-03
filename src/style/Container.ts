@@ -11,11 +11,11 @@ export const AppContainer = styled.div<DefaultStyledComponent>`
     border-bottom-width: 0;
     border-left-width: 1px;
     border-style: solid;
-    border-color: #0f0f0f;
+    border-color: ${(props) => props.theme.palette.divider};
     display: flex;
 `
 
-export const GlobalBackground = createGlobalStyle`
+export const Global = createGlobalStyle`
 html,
 body {
     height: 100%;
@@ -31,7 +31,7 @@ body {
     padding: 0;
     outline: 0;
     box-sizing: inherit;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-family: ${(props) => props.theme.fonts.main};
     font-weight: 400;
     font-size: 1rem;
     line-height: 1.5;

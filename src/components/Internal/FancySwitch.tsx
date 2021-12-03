@@ -25,7 +25,7 @@ interface SSWitchProps extends DefaultStyledComponent {
 
 const SSwitch = styled.label<SSWitchProps>`
     cursor: pointer;
-    background: #15273b;
+    background: #e3e3e3;
     padding: 5px;
     width: 60px;
     height: 35px; // height = width / 2 + padding
@@ -55,7 +55,7 @@ const SToggle = styled.div`
     &::after {
         content: '';
         border-radius: 50%;
-        background: #ccc;
+        background: #157ce1;
         grid-column: 2;
         transition: background .2s;
     }

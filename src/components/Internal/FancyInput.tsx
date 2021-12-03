@@ -1,34 +1,34 @@
 import React from 'react'
-import styled from 'styled-components';
+import styled, { DefaultStyledComponent } from 'styled-components';
 
 interface InputProps extends Omit<React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, 'ref'> {
-    label?: string;
+  label?: string;
 }
 
 
 
 export default function FancyInput(props: InputProps): JSX.Element {
 
-    const [isValid, setIsValid] = React.useState(false);
+  const [isValid, setIsValid] = React.useState(false);
 
-    const AbobaHandler = (e: React.FocusEvent<HTMLInputElement, Element>) => {
-        setIsValid(!!e.target.value)
-    }
+  const AbobaHandler = (e: React.FocusEvent<HTMLInputElement, Element>) => {
+    setIsValid(!!e.target.value)
+  }
 
 
-    return (
-        <LInputContainer>
-            <LInput
-                {...props}
-                onBlur={(e) => AbobaHandler(e)}
-                className={`${props.className && props.className || ''} ${isValid ? 'is-valid' : ''}`}
-            />
-            <LLabel>{props.label}</LLabel>
-        </LInputContainer>
-    )
+  return (
+    <LInputContainer>
+      <LInput
+        {...props}
+        onBlur={(e) => AbobaHandler(e)}
+        className={`${props.className && props.className || ''} ${isValid ? 'is-valid' : ''}`}
+      />
+      <LLabel>{props.label}</LLabel>
+    </LInputContainer>
+  )
 }
 
-const LInputContainer = styled.div`
+const LInputContainer = styled.div<DefaultStyledComponent>`
   margin-bottom: 1rem;
   background-color: #f5f5f5;
   position: relative;
@@ -43,7 +43,7 @@ const LInputContainer = styled.div`
   };
 `
 
-const LLabel = styled.label`
+const LLabel = styled.label<DefaultStyledComponent>`
   display: block;
   position: absolute;
   top: 50%;
@@ -56,12 +56,12 @@ const LLabel = styled.label`
   pointer-events: none;
 `
 
-const LInput = styled.input`
+const LInput = styled.input<DefaultStyledComponent>`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
   background: transparent;
-  caret-color: #6200ee;
+  caret-color: ${(props) => props.theme.type === 'dark' ? '#6200ee' : '#157ce1'};
   border: 1px solid transparent;
   border-bottom-color: rgba(0, 0, 0, 0.42);
   color: rgba(0, 0, 0, 0.87);
@@ -71,10 +71,10 @@ const LInput = styled.input`
   &:focus {
     outline: none;
     border-bottom-width: 2px;
-    border-bottom-color: #6200ee;
+    border-bottom-color: ${(props) => props.theme.type === 'dark' ? '#6200ee' : '#157ce1'};
   }
   &:focus + label {
-    color: #6200ee;
+    color: ${(props) => props.theme.type === 'dark' ? '#6200ee' : '#157ce1;'};
   }
   &:focus + label,
   &.is-valid + label {

@@ -1,7 +1,10 @@
 import React from 'react';
-import { LHeader, LInnerContainer, LOuterContainer } from '../style/LoginFormStyles';
+import styled, { DefaultStyledComponent } from "styled-components";
 import FancyInput from './Internal/FancyInput';
 import FancyButton from './Internal/FancyButton';
+import FancySwitch from './Internal/FancySwitch';
+import { useAppDispatch } from '../redux/hooks';
+import { toggleDark } from '../redux/actions/AppAction';
 
 interface LoginProps {
     onLogin: (roomId: string, userName: string) => void
@@ -9,6 +12,7 @@ interface LoginProps {
 
 
 function LoginForm(props: LoginProps) {
+    const dispatch = useAppDispatch();
     const [roomId, setRoomId] = React.useState('');
     const [userName, setUserName] = React.useState('');
     const [isLoading, setLoading] = React.useState(false);
@@ -37,6 +41,7 @@ function LoginForm(props: LoginProps) {
     return (
         <>
             <LOuterContainer>
+                <FancySwitch onClick={() => dispatch(toggleDark())} />
                 <LInnerContainer>
                     <LHeader>React Chat</LHeader>
                     <FancyInput
@@ -67,3 +72,25 @@ function LoginForm(props: LoginProps) {
 }
 
 export default LoginForm;
+
+
+const LOuterContainer = styled.div<DefaultStyledComponent>`
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const LInnerContainer = styled.div<DefaultStyledComponent>`
+  
+`
+
+const LHeader = styled.h2<DefaultStyledComponent>`
+  margin: 0px 0px 20px;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 300;
+  font-size: 3.75rem;
+  line-height: 1.2;
+  letter-spacing: -0.00833em;
+`

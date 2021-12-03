@@ -4,18 +4,18 @@ export const LightThemeSSS: DefaultTheme = {
     type: 'light',
     palette: {
         primary: {
-            light: '#212121',
-            main: '#8774E1',
+            light: '#fff',
+            main: '#fff',
             dark: '#0f0f0f',
             contrastText: '#66727D',
         },
-        divider: '#66727D',
+        divider: '#dfe1e5',
         background: {
-            default: '#181818',
+            default: '#fff',
             paper: '#181818',
         },
         text: {
-            primary: '#fff',
+            primary: '#000',
             secondary: '#66727D',
         },
     },

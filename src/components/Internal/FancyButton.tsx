@@ -44,12 +44,12 @@ const Button = styled.button<DefaultStyledComponent>`
     border-radius: 4px;
     transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     color: ${(props) => props.theme.palette.text.primary};
-    background-color: rgb(135, 116, 225);
+    background-color: ${(props) => props.theme.type === 'dark' ? '#8774E1' : '#FFF'};
     box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
     min-height: 3rem;
     &:hover{
-        background-color: white;
-        color: black;
+        background-color: ${(props) => props.theme.type === 'dark' ? '#FFF' : '#e3e3e3'};
+        color: ${(props) => props.theme.type === 'dark' ? '#000' : '#157ce1'};
     }
 `
 

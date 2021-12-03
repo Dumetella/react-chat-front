@@ -9,10 +9,10 @@ export const DarkThemeSSS: DefaultTheme = {
             dark: '#0f0f0f',
             contrastText: '#66727D',
         },
-        divider: 'rgba(159,183,197,0.1)',
+        divider: '#0f0f0f',
         background: {
             default: '#181818',
-            paper: '#181818',
+            paper: '#0f0f0f',
         },
         text: {
             primary: '#fff',
