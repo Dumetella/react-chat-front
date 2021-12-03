@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { connectionInitAction, roomJoin, sendMessage } from '../redux/actions/AppAction';
+import { connectionInitAction, roomJoin } from '../redux/actions/AppAction';
 import { Normalize } from 'styled-normalize';
 import { ThemeProvider } from 'styled-components';
 import { AppContainer, Global } from '../style/Container';
@@ -33,7 +33,7 @@ function App() {
           <LoginForm onLogin={onLogin} />
         ) : (
           <AppContainer>
-            <Chat onAddMessage={(m) => dispatch(sendMessage(m))} />
+            <Chat />
           </AppContainer>
         )}
       </ThemeProvider>

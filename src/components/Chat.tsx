@@ -1,54 +1,21 @@
 import React from 'react';
 import { toggleDark } from '../redux/actions/AppAction';
-import { useAppDispatch } from '../redux/hooks';
-import { RightBackground, RightBackgroundBox, RightOuterBox, RightHeader, HeaderUtils, LeftColumn, MainBox, RightColumn, RightInnerBox, SimpleText, ChatInput, InputContainer, InputWrapper, NewMessageBox, FinalInputContainer, Input } from '../style/ChatStyles';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { RightBackground, RightBackgroundBox, RightOuterBox, RightHeader, HeaderUtils, LeftColumn, MainBox, RightColumn, RightInnerBox, SimpleText, HeaderCaption } from '../style/ChatStyles';
+import ChatInputC from './ChatInput';
 import FancySwitch from './Internal/FancySwitch';
 import MessageBox from './MessageBox';
-import UserBox from './Userbox';
+import UsersBox from './Userbox';
 
-
-interface ChatProps {
-  // users: ChatUser[],
-  // messages?: ChatMessage[],
-  // userName: string,
-  // roomId: string,
-  onAddMessage: (message: string) => void
-}
-
-function Chat(props: ChatProps) {
-  const [messageValue, setMessageValue] = React.useState('');
+function Chat() {
 
   const dispatch = useAppDispatch();
-
-
-
-  // const { messages, roomId, onAddMessage, userName, users } = props;
-
-  const onSendMessage = () => {
-    if (messageValue.trim() === '') {
-      setMessageValue('');
-      return
-    }
-    props.onAddMessage(messageValue);
-    setMessageValue('');
-  };
-
-
-
-  const keyPress = (e: React.KeyboardEvent) => {
-    if (e.shiftKey === false) {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        onSendMessage();
-      }
-    }
-    return
-  }
+  const dark = useAppSelector(state => state.app.darkTheme);
 
   return (
     <MainBox>
       <LeftColumn>
-        <UserBox />
+        <UsersBox />
       </LeftColumn>
       <RightColumn>
         <RightOuterBox>
@@ -58,27 +25,12 @@ function Chat(props: ChatProps) {
             </RightBackgroundBox>
             <RightHeader>
               <HeaderUtils>
-                <SimpleText>Toggle Dark Theme</SimpleText>
-                <FancySwitch onClick={() => dispatch(toggleDark())} />
+                <HeaderCaption>Toggle Dark Theme</HeaderCaption>
+                <FancySwitch onClick={() => dispatch(toggleDark())} checked={dark} />
               </HeaderUtils>
             </RightHeader>
             <MessageBox />
-            <ChatInput>
-              <InputContainer>
-                <InputWrapper>
-                  <NewMessageBox>
-                    <FinalInputContainer>
-                      <Input
-                        value={messageValue}
-                        onChange={(e) => setMessageValue(e.target.value)}
-                        onKeyDown={keyPress}
-                      >
-                      </Input>
-                    </FinalInputContainer>
-                  </NewMessageBox>
-                </InputWrapper>
-              </InputContainer>
-            </ChatInput>
+            <ChatInputC />
           </RightInnerBox>
         </RightOuterBox>
       </RightColumn>

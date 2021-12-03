@@ -6,12 +6,13 @@ interface FancySwitchProps {
     width?: number;
     padding?: number;
     height?: number;
+    checked?: boolean;
 }
 
 export default function FancySwitch(props: FancySwitchProps): JSX.Element {
     return (
         <SSwitch>
-            <SInput type="checkbox" onClick={props.onClick}></SInput>
+            <SInput checked={props.checked} type="checkbox" onClick={props.onClick}></SInput>
             <SToggle className="switch"></SToggle>
         </SSwitch>
     )

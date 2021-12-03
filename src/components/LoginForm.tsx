@@ -3,7 +3,7 @@ import styled, { DefaultStyledComponent } from "styled-components";
 import FancyInput from './Internal/FancyInput';
 import FancyButton from './Internal/FancyButton';
 import FancySwitch from './Internal/FancySwitch';
-import { useAppDispatch } from '../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { toggleDark } from '../redux/actions/AppAction';
 
 interface LoginProps {
@@ -12,10 +12,12 @@ interface LoginProps {
 
 
 function LoginForm(props: LoginProps) {
+
     const dispatch = useAppDispatch();
     const [roomId, setRoomId] = React.useState('');
     const [userName, setUserName] = React.useState('');
     const [isLoading, setLoading] = React.useState(false);
+    const dark = useAppSelector(state => state.app.darkTheme);
 
     const onEnter = async () => {
         if (!roomId || !userName) {
@@ -41,7 +43,6 @@ function LoginForm(props: LoginProps) {
     return (
         <>
             <LOuterContainer>
-                <FancySwitch onClick={() => dispatch(toggleDark())} />
                 <LInnerContainer>
                     <LHeader>React Chat</LHeader>
                     <FancyInput
@@ -65,6 +66,10 @@ function LoginForm(props: LoginProps) {
                         onClick={onEnter}
                         text={'Join'}
                     />
+                    <LMiniContainer>
+                        <SimpleCaption>Toggle Dark Theme</SimpleCaption>
+                        <FancySwitch onClick={() => dispatch(toggleDark())} checked={dark} />
+                    </LMiniContainer>
                 </LInnerContainer>
             </LOuterContainer>
         </>
@@ -93,4 +98,14 @@ const LHeader = styled.h2<DefaultStyledComponent>`
   font-size: 3.75rem;
   line-height: 1.2;
   letter-spacing: -0.00833em;
+`
+
+const LMiniContainer = styled.div<DefaultStyledComponent>`
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+`
+
+const SimpleCaption = styled.div<DefaultStyledComponent>`
+    font-size: 1.5rem;
 `

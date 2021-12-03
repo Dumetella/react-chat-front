@@ -1,6 +1,6 @@
 {
     "name": "react-chat",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "description": "websocket react chat application",
     "scripts": {
         "start": "webpack serve --mode development --progress --hot --config ./configs/webpack.config.development.js",

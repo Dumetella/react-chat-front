@@ -110,6 +110,10 @@ export const HeaderUtils = styled.div<DefaultStyledComponent>`
     margin-left: auto;
 `
 
+export const HeaderCaption = styled.div<DefaultStyledComponent>`
+    padding-right: 25px;
+`
+
 export const BubblesBox = styled.div<DefaultStyledComponent>`
     width: 100%;
     flex: 1 1 auto;
@@ -141,78 +145,4 @@ export const BubblesInner = styled.div<DefaultStyledComponent>`
     justify-content: flex-end;
     padding: 0 .8125rem;
     max-width: 728px;
-`
-
-export const ChatInput = styled.div<DefaultStyledComponent>`
-    width: 100%;
-    padding-bottom: 0.5rem;
-    display: flex;
-    max-width: 100%;
-    padding-top: .25rem;
-    flex-direction: column;
-    flex: 0 0 auto;
-    position: relative;
-`
-
-export const InputContainer = styled.div<DefaultStyledComponent>`
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    max-width: 728px;
-    margin: 0 auto;
-    width: 100%;
-    padding: 0;
-    flex: 0 0 auto;
-    position: relative;
-    padding-bottom: 10px;
-`
-
-export const InputWrapper = styled.div<DefaultStyledComponent>`
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    max-width: 100%;
-    justify-content: center;
-    background-color: #fff;
-    border-radius: 12px;
-    border-bottom-right-radius: 0;
-    box-shadow: 0px 1px 8px 1px rgba(0, 0, 0, .18);
-    max-height: 30rem;
-    flex: 0 0 auto;
-    position: relative;
-    z-index: 3;
-`
-
-export const NewMessageBox = styled.div<DefaultStyledComponent>`
-    align-items: flex-end;
-    min-height: 1rem;
-    opacity: 1;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    position: relative;
-    background-color: inherit;
-    border-radius: .75rem;
-`
-
-export const FinalInputContainer = styled.div<DefaultStyledComponent>`
-    width: 1%;
-    max-height: inherit;
-    flex: 1 1 auto;
-    position: relative;
-    overflow: hidden;
-    align-self: center;
-    min-height: 2rem;
-    display: flex;
-    align-items: center;
-`
-
-export const Input = styled.textarea<DefaultStyledComponent>`
-    width: 100%;
-    resize: none;
-    border-radius: 8px;
-    background-color: ${(props) => props.theme.palette.primary.light};
-    color: ${(props) => props.theme.palette.text.primary};
-    scrollbar-width: thin;
 `
