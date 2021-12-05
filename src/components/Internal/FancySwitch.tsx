@@ -2,17 +2,14 @@ import React from 'react'
 import styled, { DefaultStyledComponent } from 'styled-components'
 
 interface FancySwitchProps {
-    onClick?: () => void;
-    width?: number;
-    padding?: number;
-    height?: number;
     checked?: boolean;
+    onChange?: () => void;
 }
 
 export default function FancySwitch(props: FancySwitchProps): JSX.Element {
     return (
         <SSwitch>
-            <SInput checked={props.checked} type="checkbox" onClick={props.onClick}></SInput>
+            <SInput onChange={props.onChange} checked={props.checked} type="checkbox"></SInput>
             <SToggle className="switch"></SToggle>
         </SSwitch>
     )

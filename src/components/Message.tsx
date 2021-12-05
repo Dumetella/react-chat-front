@@ -1,16 +1,20 @@
 import React from 'react'
 import styled, { DefaultStyledComponent } from "styled-components";
 import { ChatMessage } from '../model/ChatMessage'
-
-
+import { useAppSelector } from '../redux/hooks';
 
 interface MessageProps {
     message: ChatMessage;
 }
 
+
+
 export default function Message(props: MessageProps): JSX.Element {
+
+    const currentUser = useAppSelector(state => state.app.userName);
+
     return (
-        <MessageBox>
+        <MessageBox sender={props.message.sender.name} currentUser={currentUser}>
             <MessageBubble>
                 <InnerMessageBox>
                     <Sender>
@@ -26,10 +30,18 @@ export default function Message(props: MessageProps): JSX.Element {
     )
 }
 
-const MessageBox = styled.div<DefaultStyledComponent>`
+
+interface MessageBoxProps extends DefaultStyledComponent {
+    sender?: string;
+    currentUser?: string;
+}
+
+const MessageBox = styled.div<MessageBoxProps>`
     width: 90%;
     padding-top: 1.5rem;
     padding-left: 1.5rem;
+    display: flex;
+    justify-content: ${(props) => props.sender === props.currentUser ? 'right' : 'left'};
 `
 
 const MessageBubble = styled.div<DefaultStyledComponent>`

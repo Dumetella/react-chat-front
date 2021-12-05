@@ -26,7 +26,7 @@ function Chat() {
             <RightHeader>
               <HeaderUtils>
                 <HeaderCaption>Toggle Dark Theme</HeaderCaption>
-                <FancySwitch onClick={() => dispatch(toggleDark())} checked={dark} />
+                <FancySwitch checked={dark} onChange={() => dispatch(toggleDark())} />
               </HeaderUtils>
             </RightHeader>
             <MessageBox />

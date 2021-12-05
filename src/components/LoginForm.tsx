@@ -10,7 +10,6 @@ interface LoginProps {
     onLogin: (roomId: string, userName: string) => void
 }
 
-
 function LoginForm(props: LoginProps) {
 
     const dispatch = useAppDispatch();
@@ -28,17 +27,6 @@ function LoginForm(props: LoginProps) {
 
         props.onLogin(roomId, userName);
     };
-
-    const inputs = document.querySelectorAll("input");
-    inputs.forEach((input: HTMLInputElement) => {
-        input.addEventListener("blur", (event: any) => {
-            if (event.target.value) {
-                input.classList.add("is-valid");
-            } else {
-                input.classList.remove("is-valid");
-            }
-        });
-    });
 
     return (
         <>
@@ -68,7 +56,7 @@ function LoginForm(props: LoginProps) {
                     />
                     <LMiniContainer>
                         <SimpleCaption>Toggle Dark Theme</SimpleCaption>
-                        <FancySwitch onClick={() => dispatch(toggleDark())} checked={dark} />
+                        <FancySwitch checked={dark} onChange={() => dispatch(toggleDark())} />
                     </LMiniContainer>
                 </LInnerContainer>
             </LOuterContainer>

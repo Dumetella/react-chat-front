@@ -16,6 +16,7 @@ interface RoomJoinGranted {
     type: 'ROOM_GRANTED';
     payload: {
         room: ChatRoom;
+        userName: string;
     }
 }
 
@@ -58,7 +59,7 @@ export default AppActionTypes;
 
 const connectionInitAction = (): ThunkResult<void> => {
     return (dispatch, getState) => {
-        // const ws = new WebSocket(`ws://${location.host}/`);
+        // const ws = new WebSocket(`${location.protocol === 'https:' ? 'wss' : 'ws'}://${location.host}/`);
         const ws = new WebSocket('ws://localhost:32280/');
         ws.addEventListener('message', (message) => {
             const msg: SocketMessage = JSON.parse(message.data);
@@ -66,7 +67,7 @@ const connectionInitAction = (): ThunkResult<void> => {
                 case 'CHAT':
                     switch (msg.payload.type) {
                         case 'ROOM_GRANTED':
-                            dispatch(loginAction(msg.payload.payload.room.id, msg.payload.payload.room.users));
+                            dispatch(loginAction(msg.payload.payload.room.id, msg.payload.payload.userName, msg.payload.payload.room.users));
                             dispatch(setUsers(msg.payload.payload.room.users));
                             break;
 
@@ -118,14 +119,15 @@ const setUsers = (users: ChatUser[]): AppActionTypes => {
     }
 }
 
-const loginAction = (id: string, users: ChatUser[]): RoomJoinGranted => {
+const loginAction = (id: string, userName: string, users: ChatUser[]): RoomJoinGranted => {
     return {
         type: 'ROOM_GRANTED',
         payload: {
             room: {
                 id,
                 users
-            }
+            },
+            userName
         }
     }
 }

@@ -15,7 +15,9 @@ function AppReducer(state = new AppState(), action: AppActionTypes): AppState {
                 roomId: action.payload.room.id,
                 users: action.payload.room.users,
                 joined: true,
+                userName: action.payload.userName
             }
+
         case 'SET_USERS':
             return {
                 ...state,

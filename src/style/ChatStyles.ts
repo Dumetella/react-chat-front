@@ -80,7 +80,7 @@ export const RightBackgroundBox = styled.div<DefaultStyledComponent>`
 `
 
 export const RightBackground = styled.div<DefaultStyledComponent>`
-    background-image: ${(props) => props.theme.type === 'light' ? 'url(assets/bg.jpeg)' : 'none'};
+    background-image: ${(props) => props.theme.type === 'light' ? 'url(images/bg.jpeg)' : 'none'};
     opacity: 1;
     background-size: cover;
     background-position: center center;

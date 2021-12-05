@@ -38,6 +38,7 @@ export default function ChatInputC(): JSX.Element {
                                 value={messageValue}
                                 onChange={(e) => setMessageValue(e.target.value)}
                                 onKeyDown={keyPress}
+                                maxLength={2024}
                             >
                             </Input>
                         </FinalInputContainer>

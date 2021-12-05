@@ -24,6 +24,7 @@ body {
     color: ${(props) => props.theme.palette.text.primary};
     background-color: ${(props) => props.theme.palette.background.default};
     font-family: ${(props) => props.theme.fonts.main};
+    scroll-behavior: smooth;
 }
 
 * {
